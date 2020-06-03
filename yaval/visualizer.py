@@ -173,8 +173,19 @@ class ListOfDictsModel(QStandardItemModel):
     _data = None
     _header = None
 
-    def __init__(self):
+    _float_precision = 4
+
+    def __init__(self, float_precision=4):
+        self._float_precision = float_precision
         super(ListOfDictsModel, self).__init__()
+
+    def _format_value(self, value):
+        if isinstance(value, float):
+            return ('%%.%df' % self._float_precision) % value
+        elif isinstance(value, int):
+            return str(value)
+        else:
+            return str(value)
 
     def update_data(self, data, header=None):
 
@@ -196,7 +207,7 @@ class ListOfDictsModel(QStandardItemModel):
 
         for row, row_items in enumerate(self._data):
             for n, header_item in enumerate(self._header):
-                self.setItem(row, n, QStandardItem(str(row_items[header_item])))
+                self.setItem(row, n, QStandardItem(self._format_value(row_items[header_item])))
 
     def get_clipboard_str(self):
         result = ""
