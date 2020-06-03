@@ -1,12 +1,13 @@
-# by christian c. sachs
+# by Christian C. Sachs
 
-# correctly prime everything for PySide
+# correctly prime everything for PySide2
+
+import PySide2
 
 import matplotlib
 import vispy.app
 
 matplotlib.use('Qt5Agg')
-matplotlib.rcParams['backend.qt5'] = 'PySide2'
 
 _ = vispy.app.use_app(backend_name='PySide2')
 
