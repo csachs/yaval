@@ -126,6 +126,7 @@ class Visualizer(QDialog):
     def value_change_callback(self, what, to):
         before = time.time()
         values = self.get_values()
+        values['_modified'] = what
         self.plugin.before_update()
         self.visualization_callback(values)
         self.plugin.after_update()
