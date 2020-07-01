@@ -20,6 +20,8 @@ class Visualizer(QDialog):
         super(Visualizer, self).__init__(parent)
         self.plugin = MetaPlugin()
         self.setWindowTitle(self.title)
+        self.setWindowFlags((self.windowFlags() & Qt.CustomizeWindowHint)
+                            | Qt.WindowMinMaxButtonsHint | Qt.WindowCloseButtonHint)
 
         if False:
             menu_bar = QMenuBar()
